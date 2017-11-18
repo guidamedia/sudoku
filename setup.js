@@ -1,8 +1,8 @@
 var setUp = {
     box_rows: 0, // the number of boxes the end-user selects
     box_cols: 0, // the number of boxes the end-user selects
-    box_end_y: 'box_end_y',
-    box_end_x: 'box_end_x',
+    box_end_y_css: 'box_end_y',
+    box_end_x_css: 'box_end_x',
     cells: 9, // the number of cells per box the end-user selects
     cell_ids: [1,2,3], // the id for every cell based on boxes & cells
     thePuzzle: null,
@@ -36,9 +36,6 @@ var setUp = {
         }
         /* start to build the table */
         this.thePuzzle =  document.createElement('table');
-        this.thePuzzle.setAttribute('border', '0');
-        this.thePuzzle.setAttribute('cellspacing', '0');
-        this.thePuzzle.setAttribute('cellpadding', '0');
 
         var box_name_for_row = 1;
         /* loop through each row */
@@ -54,10 +51,10 @@ var setUp = {
                 td.innerHTML = td_id;
                 if (c % this.box_cols == 0 && c < this.cells) {
                     box_name_for_col++;
-                    td.className = this.box_end_y;
+                    td.className = this.box_end_y_css;
                 }
                 if (at_bottom_of_box && r < this.cells) {
-                    var td_class = this.box_end_x;
+                    var td_class = this.box_end_x_css;
                     if (td.className) {
                         td_class += ' ' + td.className;
                     }

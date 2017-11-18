@@ -10,6 +10,7 @@
     <form id="set_up_options">
         <label for="cells">How many cells per box:</label> <select id="cells" name="cells"></select><br />
         <input type="button" onclick="preview();" value="Preview" />
+        <input type="button" onclick="create();" value="Create The Game" />
         <input type="button" onclick="setUp();" value="Play the Game" />
     </form>
     <div id="game_area" class="sudoku"></div>
@@ -35,13 +36,20 @@
             });
         }
 
+        function create() {
+
+        }
+
         function preview() {
             setUp.setCells(cells.value);
-            setUp.box_end_y = 'box_end_y';
+            setUp.box_end_y_css = 'box_end_y';
             console.log('clearing game area');
             gameArea.innerHTML = '';
 
             var table = setUp.buildGrid();
+            table.setAttribute('border', '0');
+            table.setAttribute('cellspacing', '0');
+            table.setAttribute('cellpadding', '0');
             gameArea.appendChild(table);
         }
     </script>
