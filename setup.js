@@ -24,7 +24,23 @@ var setUp = {
             this.box_rows = floored;
             this.box_cols = c/floored;
         } else {
-            // not yet
+            console.log('>>> Getting divisibles for ' + c);
+            floored++;
+            console.log('>>> floored ' + floored);
+            for (var i = floored; i < c; i++) {
+                if (c % i == 0) {
+                    console.log('>>> i ' + i + ' = ' + (c % i));
+                    this.box_rows = i;
+                    this.box_cols = c/i;
+                    break;
+                }
+            }
+            if (0 == this.box_cols || 0 == this.box_rows) {
+                console.log('Setting to 9 cell default');
+                this.box_cols = 3;
+                this.box_rows = 3;
+                this.cells = 9;
+            }
         }
         console.log('box_rows ' + this.box_rows);
         console.log('boxes_cols ' + this.box_cols);
