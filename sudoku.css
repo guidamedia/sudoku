@@ -1,0 +1,14 @@
+.sudoku table {
+}
+.sudoku td {
+    border: 1px solid silver;
+    height: 40px;
+    width: 40px;
+    padding: .5em;
+}
+.sudoku td.box_end_y {
+    border-right: 2px solid black;
+}
+.sudoku td.box_end_x {
+    border-bottom: 2px solid black;
+}

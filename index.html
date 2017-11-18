@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Soduku SetUp</title>
+    <script src="setup.js" type="text/javascript"></script>
+    <link href="sudoku.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="set_up_options">
+        <label for="cells">How many cells per box:</label> <select id="cells" name="cells"></select><br />
+        <input type="button" onclick="preview();" value="Preview" />
+        <input type="button" onclick="setUp();" value="Play the Game" />
+    </form>
+    <div id="game_area" class="sudoku"></div>
+</body>
+<footer>
+    <script type="text/javascript">
+        var non_primes = [4, 8, 9, 12, 15, 16, 20, 24, 25, 30, 35, 36];
+        var default_non_prime = 9;
+        var cells = document.getElementById('cells');
+        var gameArea = document.getElementById('game_area');
+
+        buildBoxCellOptions();
+
+        function buildBoxCellOptions() {
+            non_primes.forEach(function(i){
+                var cell_options = document.createElement('option');
+                cell_options.innerHTML = i.toString();
+                cell_options.value = i;
+                if (i == default_non_prime) {
+                    cell_options.selected = true;
+                }
+                cells.appendChild(cell_options);
+            });
+        }
+
+        function preview() {
+            setUp.setCells(cells.value);
+            setUp.box_end_y = 'box_end_y';
+            console.log('clearing game area');
+            gameArea.innerHTML = '';
+
+            var table = setUp.buildGrid();
+            gameArea.appendChild(table);
+        }
+    </script>
+</footer>
+</html>
