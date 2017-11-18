@@ -36,10 +36,6 @@
             });
         }
 
-        function create() {
-
-        }
-
         function preview() {
             setUp.setCells(cells.value);
             setUp.box_end_y_css = 'box_end_y';
@@ -51,6 +47,10 @@
             table.setAttribute('cellspacing', '0');
             table.setAttribute('cellpadding', '0');
             gameArea.appendChild(table);
+        }
+
+        function create() {
+            setUp.setAnswers();
         }
     </script>
 </footer>
