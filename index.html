@@ -37,12 +37,13 @@
         }
 
         function preview() {
+            setUp.reset();
             setUp.setCells(cells.value);
             setUp.box_end_y_css = 'box_end_y';
             console.log('clearing game area');
             gameArea.innerHTML = '';
 
-            var table = setUp.buildGrid();
+            var table = setUp.build();
             table.setAttribute('border', '0');
             table.setAttribute('cellspacing', '0');
             table.setAttribute('cellpadding', '0');
@@ -50,6 +51,18 @@
         }
 
         function create() {
+            setUp.reset();
+            setUp.setCells(cells.value);
+            setUp.box_end_y_css = 'box_end_y';
+            console.log('clearing game area');
+            gameArea.innerHTML = '';
+
+            var table = setUp.build();
+            table.setAttribute('border', '0');
+            table.setAttribute('cellspacing', '0');
+            table.setAttribute('cellpadding', '0');
+            gameArea.appendChild(table);
+
             setUp.setAnswers();
         }
     </script>
