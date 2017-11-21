@@ -65,23 +65,23 @@ var setUp = {
             probably enough unless there are people with a lot of time on their hands or a super genius. As well,
             as we use td_id's the amount of options decrease as we traverse the data.
          */
-        console.log('this.cell_id_options');
-        console.log(this.cell_id_options);
-        console.log('Length of cell ids = ' + this.cell_ids.length);
+        //console.log('this.cell_id_options');
+        //console.log(this.cell_id_options);
+        //console.log('Length of cell ids = ' + this.cell_ids.length);
         /* we need an array of td_ids for each number.  */
         for (var i = 1; i <= this.cells; i++) {
             /* Using slice is a way to clone the array. Otherwise all instance point to a single object */
             this.cell_id_options[i] = this.cell_ids.slice(0);
         }
-        console.log('this.cell_id_options');
-        console.log(this.cell_id_options);
+        //console.log('this.cell_id_options');
+        //console.log(this.cell_id_options);
         /* Loop through each number and find positions for them in the Sudoku puzzle */
         for (var r = 1; r <= this.cells; r++) {
             /* Find places for the number of cells being played... so for a 9 cell puzzle, find 9 places */
             for (var c = 0; c < this.cells; c++) {
-                console.log('>>>>>>>>>>>>>>>>>>>>>> LENGTH FOR NUMBER: ' + r + ' IS ' + this.cell_id_options[r].length);
-                console.log(this.cell_id_options[r]);
                 console.log('The current position being filled: c = ' + c);
+                console.log('>>>>>>>>>>>>>>>>>>>>>> LENGTH FOR NUMBER: ' + r + ' IS ' + this.cell_id_options[r].length);
+                //console.log(this.cell_id_options[r]);
 
                 /* Select a value and set it to the id in cell_values */
                 // pick a random number out of the length for cell_id_options[r]
@@ -97,16 +97,16 @@ var setUp = {
                 for (var r2 = 1; r2 <= this.cells; r2++) {
                     /* find the position in the other arrays and removed them. */
                     var position_found = this.cell_id_options[r2].indexOf(td_id);
-                    console.log('td_id_found = ' + this.cell_id_options[r2][position_found]);
+                    //console.log('td_id_found = ' + this.cell_id_options[r2][position_found]);
                     this.cell_id_options[r2].splice(position_found, 1);
                 }
-                console.log(this.cell_id_options);
-                return;
+                //console.log(this.cell_id_options);
 
                 /* If not the last number, remove all additional options for the number
                     This is because all the other rows will be used and unset and there is only
                     a single row left. */
-                if (r < this.cells) {
+                //console.log(r + " < " + this.cells + (r < this.cells))
+                if (r < this.cells && 1 <= this.cell_id_options[r].length) {
                     // get the values from the td_id
                     var td_id_ar = td_id.toString().split('_');
                     td_id_ar.forEach(function (value, index) {
@@ -131,19 +131,18 @@ var setUp = {
                         var matching = false;
                         do {
                             var td_id_to_examine = setUp.cell_id_options[r][cur_pos];
-                            console.log('********* td_id = ' + td_id);
-                            console.log('pattern = ' + pattern);
-                            console.log('td_id_to_examine = ' + td_id_to_examine);
-                            console.log(setUp.cell_id_options[r]);
+                            //console.log('********* td_id = ' + td_id);
+                            //console.log('pattern = ' + pattern);
+                            //console.log('td_id_to_examine = ' + td_id_to_examine);
                             if (td_id_to_examine.match(pattern)) {
                                 matching = true;
-                                console.log('MATCH cur_pos ' + cur_pos);
+                                //console.log('MATCH cur_pos ' + cur_pos);
                                 setUp.cell_id_options[r].splice(cur_pos, 1);
-                                console.log('MATCH cell_id_option');
-                                console.log(setUp.cell_id_options[r]);
+                                //console.log('MATCH cell_id_option');
+                                //console.log(setUp.cell_id_options[r]);
                             } else {
                                 cur_pos++;
-                                console.log('cur_pos ' + cur_pos);
+                                //console.log('cur_pos ' + cur_pos);
                                 /* For first pattern - when matching ends, skip to the next pattern
                                  to decrease iterations */
                                 if (matching && 0 == index) {
@@ -151,13 +150,12 @@ var setUp = {
                                     break;
                                 }
                             }
-                            console.log('LENGTH FOR NUMBER: ' + r + ' IS ' + setUp.cell_id_options[r].length);
+                            //console.log('LENGTH FOR NUMBER: ' + r + ' IS ' + setUp.cell_id_options[r].length);
                         } while (cur_pos < setUp.cell_id_options[r].length);
                     });
                 }
             }
-            console.log(this.cell_id_options);
-            break;
+            console.log(this.cell_values);
         }
     },
     reset: function() {
